@@ -1,16 +1,5 @@
 name = "easygeo-html2md"
 main = "worker/index.js"
-compatibility_date = "2024-10-01"
+compatibility_date = "2025-11-01"
 
 # Cloudflare Workers configuration for easyGEO HTML to Markdown service
-[env.production]
-name = "easygeo-html2md"
-routes = []
-
-# Allow CORS for all origins (you can restrict this in production)
-[build]
-command = ""
-
-# Set limits
-[limits]
-cpu_ms = 50

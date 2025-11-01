@@ -5,7 +5,7 @@
   "main": "worker/index.js",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev worker/index.js",
     "deploy": "wrangler deploy",
     "deploy:production": "wrangler deploy --env production",
     "tail": "wrangler tail",

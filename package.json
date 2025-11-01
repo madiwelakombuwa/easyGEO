@@ -1,0 +1,30 @@
+{
+  "name": "easygeo",
+  "version": "1.0.0",
+  "description": "easyGEO - HTML to Markdown conversion service for Cloudflare Workers",
+  "main": "worker/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:production": "wrangler deploy --env production",
+    "tail": "wrangler tail",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html",
+    "markdown",
+    "converter",
+    "cloudflare-workers",
+    "geo",
+    "generative-engine-optimization"
+  ],
+  "author": "easyGEO Contributors",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "linkedom": "^0.18.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.0"
+  }
+}

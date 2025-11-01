@@ -1,6 +1,8 @@
 # easyGEO
 easyGEO is an open-source tool designed to help websites achieve GEO (Generative Engine Optimization). With easyGEO, you can effortlessly convert your website's HTML content into Markdown format—paving the way for generative engines and optimized content management.
 
+🎮 **Try the Live Demo:** [Open demo.html](demo.html) for an interactive testing interface!
+
 ## Features
 
 ### ✅ Cloudflare Workers API (NEW!)
@@ -85,6 +87,20 @@ Response:
 📚 **For more examples:** See [EXAMPLES.md](EXAMPLES.md) for usage examples in JavaScript, Python, PHP, Ruby, and more.
 
 📖 **Full Documentation:** [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) for complete API documentation.
+
+### Interactive Demo App
+
+**🎮 Try it live:** Open [demo.html](demo.html) in your browser for an interactive testing interface!
+
+The demo app includes:
+- ✨ Beautiful, modern UI with live conversion
+- 📝 8 pre-built HTML examples to try instantly
+- 📊 Real-time statistics (input/output size, conversion time)
+- 📋 One-click copy to clipboard
+- 📱 Responsive design for mobile and desktop
+- 📖 Built-in API documentation
+
+See [DEMO_APP.md](DEMO_APP.md) for deployment options and customization guide.
 
 ### Chrome Extension
 

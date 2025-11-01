@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev worker/index.js",
-    "deploy": "wrangler deploy worker/index.js --name easygeo-html2md --compatibility-date=2025-11-01",
-    "deploy:production": "wrangler deploy worker/index.js --name easygeo-html2md --compatibility-date=2025-11-01 --env production",
+    "deploy": "wrangler deploy worker/index.js --name easygeo --compatibility-date=2025-11-01",
+    "deploy:production": "wrangler deploy worker/index.js --name easygeo --compatibility-date=2025-11-01 --env production",
     "tail": "wrangler tail",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -11,7 +11,9 @@ Deploy easyGEO as a serverless API on Cloudflare's global network! The Worker pr
 - 📦 Comprehensive HTML element support
 - 🆓 Free tier available (100,000 requests/day)
 
-See [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) for deployment instructions.
+**🌐 Live Demo:** https://easygeo.harsha-4cf.workers.dev/
+
+See [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) for deployment instructions and [EXAMPLES.md](EXAMPLES.md) for usage examples.
 
 ### ✅ HTML to Markdown Conversion (Chrome Extension)
 The core HTML to Markdown conversion functionality is already implemented as a Chrome extension!
@@ -54,10 +56,10 @@ go to html2md-chrome-extension for installation instructions and usage.
 
 ### Cloudflare Worker API
 
-Once deployed, use the API to convert HTML to Markdown:
+Use the live API to convert HTML to Markdown:
 
 ```bash
-curl -X POST https://your-worker.workers.dev/convert \
+curl -X POST https://easygeo.harsha-4cf.workers.dev/convert \
   -H "Content-Type: application/json" \
   -d '{
     "html": "<h1>Hello World</h1><p>This is a <strong>test</strong>.</p>",
@@ -76,11 +78,13 @@ Response:
 
 ### API Endpoints
 
-- `GET /` - API documentation
-- `GET /health` - Health check
-- `POST /convert` - Convert HTML to Markdown
+- **GET /** - API documentation
+- **GET /health** - Health check endpoint
+- **POST /convert** - Convert HTML to Markdown
 
-See [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) for complete API documentation and examples.
+📚 **For more examples:** See [EXAMPLES.md](EXAMPLES.md) for usage examples in JavaScript, Python, PHP, Ruby, and more.
+
+📖 **Full Documentation:** [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) for complete API documentation.
 
 ### Chrome Extension
 

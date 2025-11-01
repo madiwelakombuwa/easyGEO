@@ -41,7 +41,9 @@ export CLOUDFLARE_API_TOKEN=your_api_token_here
 npm run deploy
 ```
 
-For detailed deployment instructions, see [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md).
+For detailed deployment instructions, see:
+- [WORKER_DEPLOYMENT.md](WORKER_DEPLOYMENT.md) - Direct Workers deployment
+- [CLOUDFLARE_PAGES_SETUP.md](CLOUDFLARE_PAGES_SETUP.md) - Cloudflare Pages deployment
 
 ### Chrome Extension
 

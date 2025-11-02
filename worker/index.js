@@ -509,8 +509,8 @@ async function getDemoHTML(apiOrigin) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>easyGEO - HTML to Markdown Converter</title>
-    <meta name="description" content="Interactive demo for easyGEO HTML to Markdown API">
+    <title>SkyaboveGEO - HTML to Markdown Converter</title>
+    <meta name="description" content="Interactive demo for SkyaboveGEO HTML to Markdown API">
     <style>
         * {
             margin: 0;
@@ -518,81 +518,98 @@ async function getDemoHTML(apiOrigin) {
             box-sizing: border-box;
         }
 
+        :root {
+            --slds-brand: #0176d3;
+            --slds-brand-dark: #014486;
+            --slds-gray-1: #f3f2f2;
+            --slds-gray-2: #ecebea;
+            --slds-gray-3: #dddbda;
+            --slds-gray-4: #c9c7c5;
+            --slds-gray-5: #b0adab;
+            --slds-gray-6: #706e6b;
+            --slds-gray-7: #514f4d;
+            --slds-gray-8: #3e3e3c;
+            --slds-white: #ffffff;
+            --slds-success: #2e844a;
+            --slds-error: #c23934;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Salesforce Sans', Arial, sans-serif;
+            background: var(--slds-gray-1);
             min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            color: var(--slds-gray-8);
+            margin: 0;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
         }
 
         header {
-            text-align: center;
-            color: white;
-            margin-bottom: 40px;
+            background: var(--slds-brand);
+            color: var(--slds-white);
+            padding: 2rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .api-url {
-            font-size: 0.9em;
-            opacity: 0.8;
-            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            opacity: 0.95;
+            font-weight: 400;
         }
 
         .main-content {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            background: var(--slds-white);
+            margin: 2rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--slds-gray-3);
         }
 
         .tabs {
             display: flex;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
+            background: var(--slds-white);
+            border-bottom: 1px solid var(--slds-gray-3);
         }
 
         .tab {
             flex: 1;
-            padding: 20px;
+            padding: 1rem;
             text-align: center;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            font-weight: 400;
+            transition: all 0.2s;
             border: none;
             background: transparent;
-            font-size: 1em;
+            font-size: 0.875rem;
+            color: var(--slds-gray-7);
+            border-bottom: 2px solid transparent;
         }
 
         .tab:hover {
-            background: #e9ecef;
+            background: var(--slds-gray-1);
+            color: var(--slds-brand);
         }
 
         .tab.active {
-            background: white;
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
+            background: var(--slds-white);
+            color: var(--slds-brand);
+            border-bottom-color: var(--slds-brand);
+            font-weight: 600;
         }
 
         .tab-content {
             display: none;
-            padding: 30px;
+            padding: 2rem;
         }
 
         .tab-content.active {
@@ -622,53 +639,61 @@ async function getDemoHTML(apiOrigin) {
 
         label {
             font-weight: 600;
-            margin-bottom: 10px;
-            color: #495057;
+            margin-bottom: 0.5rem;
+            color: var(--slds-gray-7);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025rem;
         }
 
         .char-count {
-            font-size: 0.85em;
-            color: #6c757d;
+            font-size: 0.75rem;
+            color: var(--slds-gray-6);
             font-weight: normal;
+            text-transform: none;
         }
 
         textarea {
             width: 100%;
             min-height: 300px;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
+            padding: 0.75rem;
+            border: 1px solid var(--slds-gray-4);
+            border-radius: 0.25rem;
             font-family: 'Courier New', monospace;
-            font-size: 0.95em;
+            font-size: 0.875rem;
             resize: vertical;
-            transition: border-color 0.3s;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            background: var(--slds-white);
         }
 
         textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--slds-brand);
+            box-shadow: 0 0 3px var(--slds-brand);
         }
 
         .output-area {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
+            background: var(--slds-gray-1);
+            border: 1px solid var(--slds-gray-3);
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="password"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 0.95em;
-            transition: border-color 0.3s;
+            padding: 0.75rem;
+            border: 1px solid var(--slds-gray-4);
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
+            background: var(--slds-white);
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus, input[type="password"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--slds-brand);
+            box-shadow: 0 0 3px var(--slds-brand);
         }
 
         .options-grid {
@@ -698,75 +723,80 @@ async function getDemoHTML(apiOrigin) {
 
         .button-group {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--slds-gray-4);
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: 400;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            line-height: 1.5;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: var(--slds-brand);
+            color: var(--slds-white);
+            border-color: var(--slds-brand);
             flex: 1;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            background: var(--slds-brand-dark);
+            border-color: var(--slds-brand-dark);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
         .btn-secondary {
-            background: #6c757d;
-            color: white;
+            background: var(--slds-white);
+            color: var(--slds-gray-8);
+            border-color: var(--slds-gray-4);
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
+            background: var(--slds-gray-1);
+            border-color: var(--slds-gray-5);
         }
 
         .btn-copy {
-            background: #28a745;
-            color: white;
+            background: var(--slds-success);
+            color: var(--slds-white);
+            border-color: var(--slds-success);
         }
 
         .btn-copy:hover {
-            background: #218838;
+            background: #1d6f39;
+            border-color: #1d6f39;
         }
 
         .examples {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            gap: 1rem;
         }
 
         .example-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #e9ecef;
+            background: var(--slds-white);
+            padding: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--slds-gray-3);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
 
         .example-card:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--slds-brand);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .example-title {
@@ -785,50 +815,55 @@ async function getDemoHTML(apiOrigin) {
         }
 
         .status-message {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1.5rem;
             display: none;
+            font-size: 0.875rem;
         }
 
         .status-message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: #ecf3ec;
+            color: #2e844a;
+            border: 1px solid #91db8b;
             display: block;
         }
 
         .status-message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: #feded8;
+            color: #c23934;
+            border: 1px solid #ea001e;
             display: block;
         }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
+            background: var(--slds-white);
+            border: 1px solid var(--slds-gray-3);
+            color: var(--slds-gray-8);
+            padding: 1rem;
+            border-radius: 0.25rem;
             text-align: center;
         }
 
         .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 1.75rem;
+            font-weight: 300;
+            margin-bottom: 0.25rem;
+            color: var(--slds-brand);
         }
 
         .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
+            font-size: 0.75rem;
+            color: var(--slds-gray-6);
+            text-transform: uppercase;
+            letter-spacing: 0.025rem;
         }
 
         .loading {
@@ -883,15 +918,14 @@ async function getDemoHTML(apiOrigin) {
 
         footer {
             text-align: center;
-            color: white;
-            margin-top: 40px;
-            opacity: 0.8;
+            color: var(--slds-gray-6);
+            padding: 2rem;
+            font-size: 0.75rem;
         }
 
         footer a {
-            color: white;
+            color: var(--slds-brand);
             text-decoration: none;
-            font-weight: 600;
         }
 
         footer a:hover {
@@ -902,16 +936,16 @@ async function getDemoHTML(apiOrigin) {
 <body>
     <div class="container">
         <header>
-            <h1>🌐 easyGEO</h1>
-            <div class="subtitle">HTML to Markdown Converter</div>
-            <div class="api-url">API: ${apiOrigin}</div>
+            <h1>SkyaboveGEO</h1>
+            <div class="subtitle">Enterprise HTML to Markdown Conversion API</div>
         </header>
 
         <div class="main-content">
             <div class="tabs">
-                <button class="tab active" onclick="switchTab('converter')">Converter</button>
-                <button class="tab" onclick="switchTab('examples')">Examples</button>
-                <button class="tab" onclick="switchTab('docs')">API Docs</button>
+                <button class="tab active" onclick="switchTab('converter', this)">Converter</button>
+                <button class="tab" onclick="switchTab('examples', this)">Examples</button>
+                <button class="tab" onclick="switchTab('aiOverview', this)">AI Overview</button>
+                <button class="tab" onclick="switchTab('docs', this)">API Docs</button>
             </div>
 
             <div id="converter" class="tab-content active">
@@ -935,6 +969,12 @@ async function getDemoHTML(apiOrigin) {
                 <div class="input-group" style="margin-bottom: 20px;">
                     <label for="baseUrl">Base URL (Optional)</label>
                     <input type="text" id="baseUrl" placeholder="https://example.com">
+                </div>
+
+                <div class="input-group" style="margin-bottom: 20px;">
+                    <label for="openaiKey">OpenAI API Key (Optional - for AI SEO Analysis)</label>
+                    <input type="password" id="openaiKey" placeholder="sk-...">
+                    <p style="font-size: 0.75rem; color: var(--slds-gray-6); margin-top: 0.25rem;">Your API key is stored locally in your browser and never sent to our servers</p>
                 </div>
 
                 <div class="options-grid">
@@ -1024,6 +1064,58 @@ async function getDemoHTML(apiOrigin) {
                 </div>
             </div>
 
+            <div id="aiOverview" class="tab-content">
+                <h2 style="font-size: 1.5rem; font-weight: 300; margin-bottom: 1rem; color: var(--slds-gray-8);">AI SEO Analysis</h2>
+                <p style="color: var(--slds-gray-7); margin-bottom: 1.5rem;">Get AI-powered suggestions to improve your HTML and Markdown content for better search engine optimization.</p>
+
+                <div id="aiStatusMessage" class="status-message"></div>
+
+                <div style="background: var(--slds-gray-1); border: 1px solid var(--slds-gray-4); border-radius: 0.25rem; padding: 1rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: var(--slds-brand);">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12H7V7h2v5zm0-6H7V4h2v2z"/>
+                        </svg>
+                        <strong>How it works</strong>
+                    </div>
+                    <ol style="font-size: 0.875rem; color: var(--slds-gray-7); margin-left: 1.5rem; line-height: 1.6;">
+                        <li>Enter your OpenAI API key in the Converter tab</li>
+                        <li>Convert your HTML to Markdown</li>
+                        <li>Click "Analyze for SEO" to get AI-powered suggestions</li>
+                        <li>Review recommendations to improve search engine visibility</li>
+                    </ol>
+                </div>
+
+                <div class="button-group">
+                    <button id="analyzeBtn" class="btn-primary" onclick="analyzeSEO()">
+                        Analyze for SEO
+                    </button>
+                    <button class="btn-secondary" onclick="clearAIAnalysis()">Clear Analysis</button>
+                </div>
+
+                <div id="aiLoading" style="display: none; padding: 2rem; text-align: center; color: var(--slds-gray-6);">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 1rem;">Analyzing content with AI...</p>
+                </div>
+
+                <div id="aiResults" style="display: none; margin-top: 2rem;">
+                    <div style="background: var(--slds-white); border: 1px solid var(--slds-gray-3); border-left: 4px solid var(--slds-brand); border-radius: 0.25rem; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: var(--slds-gray-8); margin-bottom: 1rem;">SEO Analysis Results</h3>
+                        <div id="aiAnalysisContent" style="font-size: 0.875rem; line-height: 1.6; color: var(--slds-gray-7);"></div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div style="background: var(--slds-white); border: 1px solid var(--slds-gray-3); border-radius: 0.25rem; padding: 1rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--slds-gray-8); margin-bottom: 0.75rem;">HTML Content</h4>
+                            <div id="htmlPreview" style="max-height: 300px; overflow-y: auto; font-size: 0.75rem; font-family: 'Courier New', monospace; background: var(--slds-gray-1); padding: 1rem; border-radius: 0.25rem;"></div>
+                        </div>
+                        <div style="background: var(--slds-white); border: 1px solid var(--slds-gray-3); border-radius: 0.25rem; padding: 1rem;">
+                            <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--slds-gray-8); margin-bottom: 0.75rem;">Markdown Content</h4>
+                            <div id="markdownPreview" style="max-height: 300px; overflow-y: auto; font-size: 0.75rem; font-family: 'Courier New', monospace; background: var(--slds-gray-1); padding: 1rem; border-radius: 0.25rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="docs" class="tab-content">
                 <div class="api-docs">
                     <h2>API Endpoints</h2>
@@ -1076,8 +1168,7 @@ async function getDemoHTML(apiOrigin) {
 
         <footer>
             <p>
-                Powered by <a href="https://github.com/fanrenaz/easyGEO" target="_blank">easyGEO</a> |
-                Running on Cloudflare Workers
+                Powered by SkyaboveGEO | Deployed on Cloudflare Workers
             </p>
         </footer>
     </div>
@@ -1085,11 +1176,13 @@ async function getDemoHTML(apiOrigin) {
     <script>
         const API_URL = '${apiOrigin}';
 
-        function switchTab(tabName) {
+        function switchTab(tabName, clickedButton) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
 
-            event.target.classList.add('active');
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
             document.getElementById(tabName).classList.add('active');
         }
 
@@ -1346,6 +1439,128 @@ greet("World");
                 convertHTML();
             }
         });
+
+        // Load and save OpenAI API key from localStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedKey = localStorage.getItem('openaiApiKey');
+            if (savedKey && document.getElementById('openaiKey')) {
+                document.getElementById('openaiKey').value = savedKey;
+            }
+        });
+
+        if (document.getElementById('openaiKey')) {
+            document.getElementById('openaiKey').addEventListener('change', function() {
+                if (this.value) {
+                    localStorage.setItem('openaiApiKey', this.value);
+                } else {
+                    localStorage.removeItem('openaiApiKey');
+                }
+            });
+        }
+
+        async function analyzeSEO() {
+            const apiKey = document.getElementById('openaiKey').value;
+            const htmlContent = document.getElementById('htmlInput').value;
+            const markdownContent = document.getElementById('markdownOutput').value;
+
+            if (!apiKey) {
+                showAIStatus('Please enter your OpenAI API key in the Converter tab', 'error');
+                return;
+            }
+
+            if (!htmlContent || !markdownContent) {
+                showAIStatus('Please convert HTML to Markdown first before analyzing', 'error');
+                return;
+            }
+
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = true;
+            document.getElementById('aiLoading').style.display = 'block';
+            document.getElementById('aiResults').style.display = 'none';
+            document.getElementById('aiStatusMessage').style.display = 'none';
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + apiKey
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are an SEO expert specializing in content optimization. Analyze the provided HTML and Markdown content and provide actionable suggestions to improve search engine optimization. Focus on: meta tags, headings structure, keyword usage, content quality, alt text for images, internal linking, readability, and semantic HTML. Provide specific, practical recommendations.'
+                            },
+                            {
+                                role: 'user',
+                                content: 'Please analyze the following HTML and Markdown content for SEO improvements:\\n\\nHTML Content:\\n' + htmlContent + '\\n\\nMarkdown Content:\\n' + markdownContent + '\\n\\nProvide detailed SEO improvement suggestions.'
+                            }
+                        ],
+                        temperature: 0.7,
+                        max_tokens: 2000
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error?.message || 'OpenAI API request failed');
+                }
+
+                const data = await response.json();
+                const analysis = data.choices[0].message.content;
+
+                // Display results
+                document.getElementById('aiAnalysisContent').innerHTML = formatAnalysis(analysis);
+                document.getElementById('htmlPreview').textContent = htmlContent.substring(0, 1000) + (htmlContent.length > 1000 ? '...' : '');
+                document.getElementById('markdownPreview').textContent = markdownContent.substring(0, 1000) + (markdownContent.length > 1000 ? '...' : '');
+
+                document.getElementById('aiResults').style.display = 'block';
+                showAIStatus('SEO analysis completed successfully', 'success');
+            } catch (error) {
+                showAIStatus('Error: ' + error.message, 'error');
+            } finally {
+                analyzeBtn.disabled = false;
+                document.getElementById('aiLoading').style.display = 'none';
+            }
+        }
+
+        function formatAnalysis(text) {
+            // Convert markdown-style formatting to HTML
+            let formatted = text
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                .replace(/^### (.+)$/gm, '<h4 style="font-size: 0.95rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--slds-gray-8);">$1</h4>')
+                .replace(/^## (.+)$/gm, '<h3 style="font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--slds-gray-8);">$1</h3>')
+                .replace(/^# (.+)$/gm, '<h2 style="font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 1rem; color: var(--slds-gray-8);">$1</h2>')
+                .replace(/^- (.+)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">$1</li>')
+                .replace(/^\d+\. (.+)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem; list-style-type: decimal;">$1</li>')
+                .replace(/`(.+?)`/g, '<code style="background: var(--slds-gray-2); padding: 0.125rem 0.25rem; border-radius: 0.125rem; font-family: monospace; font-size: 0.85em;">$1</code>')
+                .replace(/\n\n/g, '</p><p style="margin-bottom: 1rem;">');
+
+            return '<p style="margin-bottom: 1rem;">' + formatted + '</p>';
+        }
+
+        function clearAIAnalysis() {
+            document.getElementById('aiResults').style.display = 'none';
+            document.getElementById('aiStatusMessage').style.display = 'none';
+            document.getElementById('aiAnalysisContent').innerHTML = '';
+            document.getElementById('htmlPreview').textContent = '';
+            document.getElementById('markdownPreview').textContent = '';
+        }
+
+        function showAIStatus(message, type) {
+            const statusEl = document.getElementById('aiStatusMessage');
+            statusEl.textContent = message;
+            statusEl.className = 'status-message ' + type;
+
+            if (type === 'success') {
+                setTimeout(function() {
+                    statusEl.style.display = 'none';
+                }, 4000);
+            }
+        }
     </script>
 </body>
 </html>`;

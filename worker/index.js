@@ -1526,15 +1526,15 @@ greet("World");
         function formatAnalysis(text) {
             // Convert markdown-style formatting to HTML
             let formatted = text
-                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.+?)\*/g, '<em>$1</em>')
-                .replace(/^### (.+)$/gm, '<h4 style="font-size: 0.95rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--slds-gray-8);">$1</h4>')
-                .replace(/^## (.+)$/gm, '<h3 style="font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--slds-gray-8);">$1</h3>')
-                .replace(/^# (.+)$/gm, '<h2 style="font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 1rem; color: var(--slds-gray-8);">$1</h2>')
-                .replace(/^- (.+)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">$1</li>')
-                .replace(/^\d+\. (.+)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem; list-style-type: decimal;">$1</li>')
-                .replace(/\x60(.+?)\x60/g, '<code style="background: var(--slds-gray-2); padding: 0.125rem 0.25rem; border-radius: 0.125rem; font-family: monospace; font-size: 0.85em;">$1</code>')
-                .replace(/\n\n/g, '</p><p style="margin-bottom: 1rem;">');
+                .replace(/\\*\\*(.+?)\\*\\*/g, '<strong>$1</strong>')
+                .replace(/\\*(.+?)\\*/g, '<em>$1</em>')
+                .replace(/^### (.+?)$/gm, '<h4 style="font-size: 0.95rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--slds-gray-8);">$1</h4>')
+                .replace(/^## (.+?)$/gm, '<h3 style="font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--slds-gray-8);">$1</h3>')
+                .replace(/^# (.+?)$/gm, '<h2 style="font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 1rem; color: var(--slds-gray-8);">$1</h2>')
+                .replace(/^- (.+?)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem;">$1</li>')
+                .replace(/^\\d+\\. (.+?)$/gm, '<li style="margin-left: 1.5rem; margin-bottom: 0.5rem; list-style-type: decimal;">$1</li>')
+                .replace(/\\x60(.+?)\\x60/g, '<code style="background: var(--slds-gray-2); padding: 0.125rem 0.25rem; border-radius: 0.125rem; font-family: monospace; font-size: 0.85em;">$1</code>')
+                .replace(/\\n\\n/g, '</p><p style="margin-bottom: 1rem;">');
 
             return '<p style="margin-bottom: 1rem;">' + formatted + '</p>';
         }

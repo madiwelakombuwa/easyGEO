@@ -1186,16 +1186,6 @@ async function getDemoHTML(apiOrigin) {
             document.getElementById(tabName).classList.add('active');
         }
 
-        document.getElementById('htmlInput').addEventListener('input', function() {
-            const count = this.value.length;
-            document.getElementById('inputCount').textContent = \`\${count.toLocaleString()} characters\`;
-        });
-
-        document.getElementById('markdownOutput').addEventListener('input', function() {
-            const count = this.value.length;
-            document.getElementById('outputCount').textContent = \`\${count.toLocaleString()} characters\`;
-        });
-
         async function convertHTML() {
             const htmlInput = document.getElementById('htmlInput').value;
 
@@ -1434,29 +1424,36 @@ greet("World");
             showStatus(\`Example loaded: \${exampleName}\`, 'success');
         }
 
-        document.getElementById('htmlInput').addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'Enter') {
-                convertHTML();
-            }
-        });
-
-        // Load and save OpenAI API key from localStorage
+        // Initialize all event listeners after DOM is ready
         window.addEventListener('DOMContentLoaded', function() {
+            // Load saved OpenAI API key
             const savedKey = localStorage.getItem('openaiApiKey');
             if (savedKey && document.getElementById('openaiKey')) {
                 document.getElementById('openaiKey').value = savedKey;
             }
-        });
 
-        if (document.getElementById('openaiKey')) {
-            document.getElementById('openaiKey').addEventListener('change', function() {
-                if (this.value) {
-                    localStorage.setItem('openaiApiKey', this.value);
-                } else {
-                    localStorage.removeItem('openaiApiKey');
-                }
-            });
-        }
+            // Save OpenAI API key when changed
+            var openaiKeyEl = document.getElementById('openaiKey');
+            if (openaiKeyEl) {
+                openaiKeyEl.addEventListener('change', function() {
+                    if (this.value) {
+                        localStorage.setItem('openaiApiKey', this.value);
+                    } else {
+                        localStorage.removeItem('openaiApiKey');
+                    }
+                });
+            }
+
+            // Keyboard shortcut for conversion
+            var htmlInputEl = document.getElementById('htmlInput');
+            if (htmlInputEl) {
+                htmlInputEl.addEventListener('keydown', function(e) {
+                    if (e.ctrlKey && e.key === 'Enter') {
+                        convertHTML();
+                    }
+                });
+            }
+        });
 
         async function analyzeSEO() {
             const apiKey = document.getElementById('openaiKey').value;

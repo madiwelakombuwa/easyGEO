@@ -1210,6 +1210,7 @@ async function getDemoHTML(apiOrigin) {
             const startTime = performance.now();
 
             try {
+                console.log('Converting HTML...', API_URL);
                 const response = await fetch(API_URL + '/convert', {
                     method: 'POST',
                     headers: {
@@ -1222,7 +1223,15 @@ async function getDemoHTML(apiOrigin) {
                     })
                 });
 
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error('HTTP error! status: ' + response.status);
+                }
+
                 const data = await response.json();
+                console.log('Response data:', data);
+
                 const endTime = performance.now();
                 const duration = Math.round(endTime - startTime);
 
@@ -1240,6 +1249,7 @@ async function getDemoHTML(apiOrigin) {
                     showStatus('Error: ' + (data.error || 'Conversion failed'), 'error');
                 }
             } catch (error) {
+                console.error('Conversion error:', error);
                 showStatus('Error: ' + error.message, 'error');
             } finally {
                 convertBtn.disabled = false;

@@ -1210,7 +1210,7 @@ async function getDemoHTML(apiOrigin) {
             const startTime = performance.now();
 
             try {
-                const response = await fetch(\`\${API_URL}/convert\`, {
+                const response = await fetch(API_URL + '/convert', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1228,19 +1228,19 @@ async function getDemoHTML(apiOrigin) {
 
                 if (data.success) {
                     document.getElementById('markdownOutput').value = data.markdown;
-                    document.getElementById('outputCount').textContent = \`\${data.length.toLocaleString()} characters\`;
+                    document.getElementById('outputCount').textContent = data.length.toLocaleString() + ' characters';
 
                     document.getElementById('inputLength').textContent = htmlInput.length.toLocaleString();
                     document.getElementById('outputLength').textContent = data.length.toLocaleString();
-                    document.getElementById('conversionTime').textContent = \`\${duration}ms\`;
+                    document.getElementById('conversionTime').textContent = duration + 'ms';
                     document.getElementById('stats').style.display = 'grid';
 
-                    showStatus('✓ Conversion successful!', 'success');
+                    showStatus('Conversion successful!', 'success');
                 } else {
-                    showStatus(\`Error: \${data.error || 'Conversion failed'}\`, 'error');
+                    showStatus('Error: ' + (data.error || 'Conversion failed'), 'error');
                 }
             } catch (error) {
-                showStatus(\`Error: \${error.message}\`, 'error');
+                showStatus('Error: ' + error.message, 'error');
             } finally {
                 convertBtn.disabled = false;
                 document.getElementById('loading').classList.remove('active');
@@ -1272,10 +1272,10 @@ async function getDemoHTML(apiOrigin) {
         function showStatus(message, type) {
             const statusEl = document.getElementById('statusMessage');
             statusEl.textContent = message;
-            statusEl.className = \`status-message \${type}\`;
+            statusEl.className = 'status-message ' + type;
 
             if (type === 'success') {
-                setTimeout(() => {
+                setTimeout(function() {
                     statusEl.style.display = 'none';
                 }, 3000);
             }
@@ -1418,10 +1418,10 @@ greet("World");
 
         function loadExample(exampleName) {
             document.getElementById('htmlInput').value = examples[exampleName];
-            document.getElementById('inputCount').textContent = \`\${examples[exampleName].length.toLocaleString()} characters\`;
+            document.getElementById('inputCount').textContent = examples[exampleName].length.toLocaleString() + ' characters';
             switchTab('converter');
             document.querySelectorAll('.tab')[0].classList.add('active');
-            showStatus(\`Example loaded: \${exampleName}\`, 'success');
+            showStatus('Example loaded: ' + exampleName, 'success');
         }
 
         // Initialize all event listeners after DOM is ready
